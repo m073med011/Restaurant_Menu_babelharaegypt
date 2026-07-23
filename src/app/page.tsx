@@ -268,10 +268,10 @@ export default function Home() {
     const exitYDesc = isNext ? -20 : 20;
 
     // 1. Zoom out current content smoothly
-    tl.to(imageRef.current, { scale: 0, opacity: 0, duration: 0.25, ease: "power3.inOut" }, 0);
-    tl.to(textRef.current, { y: exitYText, opacity: 0, duration: 0.25, ease: "power3.inOut" }, 0);
-    tl.to(descRef.current, { y: exitYDesc, opacity: 0, duration: 0.2, ease: "power3.inOut" }, 0);
-    tl.to(btnRef.current, { y: 20, opacity: 0, scale: 0.8, duration: 0.2, ease: "power3.inOut" }, 0);
+    tl.to(imageRef.current, { scale: 0, opacity: 0, duration: 0.6, ease: "power3.inOut" }, 0);
+    tl.to(textRef.current, { y: exitYText, opacity: 0, duration: 0.6, ease: "power3.inOut" }, 0);
+    tl.to(descRef.current, { y: exitYDesc, opacity: 0, duration: 0.5, ease: "power3.inOut" }, 0);
+    tl.to(btnRef.current, { y: 20, opacity: 0, scale: 0.8, duration: 0.5, ease: "power3.inOut" }, 0);
     
     // 2. Animate background overlay expanding smoothly
     if (overlayRef.current) {
@@ -279,7 +279,7 @@ export default function Home() {
         gsap.set(overlayRef.current, { clipPath: "circle(0% at 100% 0%)" });
         tl.to(overlayRef.current, {
           clipPath: "circle(150% at 100% 0%)",
-          duration: 0.6,
+          duration: 1.2,
           ease: "power3.inOut",
           onComplete: () => {
             flushSync(() => {
@@ -292,7 +292,7 @@ export default function Home() {
         gsap.set(overlayRef.current, { clipPath: "circle(150% at 100% 0%)" });
         tl.to(overlayRef.current, {
           clipPath: "circle(0% at 100% 0%)",
-          duration: 0.6,
+          duration: 1.2,
           ease: "power3.inOut",
           onComplete: () => {
             flushSync(() => {
@@ -315,35 +315,35 @@ export default function Home() {
       gsap.fromTo(
         imageRef.current,
         { scale: 0, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }
+        { scale: 1, opacity: 1, duration: 1.0, ease: "power3.out" }
       );
       gsap.fromTo(
         textRef.current,
         { y: enterYText, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
+        { y: 0, opacity: 1, duration: 1.0, ease: "power3.out" }
       );
       
       // Make the container fully visible immediately so we can see the letters type
       gsap.fromTo(
         descRef.current,
         { y: enterYDesc, opacity: 1 },
-        { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
       );
       
       gsap.fromTo(
         btnRef.current,
         { y: -150, opacity: 0, scale: 0.8 },
-        { y: 0, opacity: 1, scale: 1, duration: 1.2, ease: "elastic.out(1, 0.4)", delay: 0.3 }
+        { y: 0, opacity: 1, scale: 1, duration: 1.5, ease: "elastic.out(1, 0.4)", delay: 0.2 }
       );
 
       if (descTextRef.current) {
         gsap.fromTo(
           descTextRef.current.querySelectorAll(".desc-char"),
           { opacity: 0 },
-          { opacity: 1, duration: 0.01, stagger: 0.015, ease: "none" }
+          { opacity: 1, duration: 0.015, stagger: 0.02, ease: "none" }
         );
       }
-    }, undefined, 0.25); // Swap exactly as the out-animation finishes
+    }, undefined, 0.6); // Swap exactly as the out-animation finishes
   };
 
   return (
@@ -352,7 +352,7 @@ export default function Home() {
     >
       {/* Fixed Background Wrapper */}
       <div 
-        className="fixed inset-0 z-0 transition-colors duration-500"
+        className="fixed inset-0 z-0 transition-colors duration-1000"
         style={{ backgroundColor: foods[bgIndex].bgColor }}
       >
         {nextBg && (
@@ -422,12 +422,12 @@ export default function Home() {
           <div ref={scrollImageRef} className="absolute z-10 flex items-center justify-center pointer-events-none">
             <div 
               ref={imageRef} 
-              className="w-[130vw] max-w-[600px] sm:w-[110vw] sm:max-w-[800px] md:w-[90vw] md:max-w-[1350px] drop-shadow-[0_20px_20px_rgba(0,0,0,0.3)] md:drop-shadow-[0_40px_40px_rgba(0,0,0,0.4)] pointer-events-auto"
+              className="w-[85vw] max-w-[400px] sm:w-[75vw] sm:max-w-[550px] md:w-[65vw] md:max-w-[700px] lg:w-[50vw] lg:max-w-[850px] drop-shadow-[0_20px_20px_rgba(0,0,0,0.3)] md:drop-shadow-[0_40px_40px_rgba(0,0,0,0.4)] pointer-events-auto"
             >
               <Image 
                 src={foods[currentIndex].img} 
                 alt={foods[currentIndex].title}
-                className="w-full h-auto object-contain transform hover:scale-105 transition-transform duration-500"
+                className="w-full h-auto max-h-[55vh] object-contain transform hover:scale-105 transition-transform duration-500"
                 priority
               />
             </div>
@@ -435,7 +435,7 @@ export default function Home() {
         </div>
 
         {/* Bottom Elements */}
-        <div dir="ltr" className="flex flex-col items-center md:flex-row md:justify-between md:items-end z-0 pb-2 sm:pb-4 w-full gap-6 md:gap-0">
+        <div dir="ltr" className="relative flex flex-col items-center md:flex-row md:justify-between md:items-end z-20 pb-2 sm:pb-4 w-full gap-6 md:gap-0">
           
           {/* Description */}
           <div 
