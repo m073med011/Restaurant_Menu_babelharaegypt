@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { flushSync } from "react-dom";
 import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Search, ShoppingBag, ArrowLeft, ArrowRight, Menu } from "lucide-react";
@@ -127,7 +128,7 @@ export default function Home() {
     mm.add("(min-width: 768px)", () => {
       gsap.to(scrollImageRef.current, {
         x: "-25vw", 
-        scale: 0.6,
+        scale: 0.9,
         rotation: 15,
         ease: "power2.inOut",
         scrollTrigger: {
@@ -143,7 +144,7 @@ export default function Home() {
 
     mm.add("(max-width: 767px)", () => {
       gsap.to(scrollImageRef.current, {
-        scale: 0.5,
+        scale: 0.75,
         rotation: 10,
         ease: "power2.inOut",
         scrollTrigger: {
@@ -352,7 +353,7 @@ export default function Home() {
     >
       {/* Fixed Background Wrapper */}
       <div 
-        className="fixed inset-0 z-0 transition-colors duration-1000"
+        className="fixed inset-0 z-0"
         style={{ backgroundColor: foods[bgIndex].bgColor }}
       >
         {nextBg && (
@@ -387,7 +388,7 @@ export default function Home() {
           <nav className="hidden md:flex gap-8 lg:gap-12 text-xs lg:text-sm font-bold tracking-widest text-white/95 uppercase">
             <a href="#" className="hover:text-white transition-colors">All Items</a>
             <a href="#" className="hover:text-white transition-colors">Roll</a>
-            <a href="#" className="hover:text-white transition-colors">Burger</a>
+            <Link href="/burger" className="hover:text-white transition-colors">Burger</Link>
             <a href="#" className="hover:text-white transition-colors">New Arrivals</a>
           </nav>
 
@@ -422,12 +423,12 @@ export default function Home() {
           <div ref={scrollImageRef} className="absolute z-10 flex items-center justify-center pointer-events-none">
             <div 
               ref={imageRef} 
-              className="w-[85vw] max-w-[400px] sm:w-[75vw] sm:max-w-[550px] md:w-[65vw] md:max-w-[700px] lg:w-[50vw] lg:max-w-[850px] drop-shadow-[0_20px_20px_rgba(0,0,0,0.3)] md:drop-shadow-[0_40px_40px_rgba(0,0,0,0.4)] pointer-events-auto"
+              className="w-[95vw] max-w-[500px] sm:w-[85vw] sm:max-w-[700px] md:w-[75vw] md:max-w-[900px] lg:w-[65vw] lg:max-w-[1100px] drop-shadow-[0_20px_20px_rgba(0,0,0,0.3)] md:drop-shadow-[0_40px_40px_rgba(0,0,0,0.4)] pointer-events-auto"
             >
               <Image 
                 src={foods[currentIndex].img} 
                 alt={foods[currentIndex].title}
-                className="w-full h-auto max-h-[55vh] object-contain transform hover:scale-105 transition-transform duration-500"
+                className="w-full h-auto max-h-[70vh] object-contain transform hover:scale-105 transition-transform duration-500"
                 priority
               />
             </div>
@@ -483,19 +484,19 @@ export default function Home() {
         ref={aboutSectionRef}
         className="relative z-10 w-full min-h-dvh flex flex-col md:flex-row items-center px-6 sm:px-12 md:px-24 py-16 md:py-0 mx-auto max-w-[1900px] overflow-hidden"
       >
-        {/* Image — hidden on mobile (hero scroll image fills this space), visible on desktop */}
-        <div className="hidden md:flex w-full md:w-1/2 items-center justify-center order-1 md:order-2 mb-10 md:mb-0">
+        {/* Image Placeholder */}
+        <div className="hidden md:flex w-full md:w-1/2 shrink-0 items-center justify-center order-1 mb-10 md:mb-0">
           <div className="about-image-wrapper w-[70vw] max-w-[400px] md:w-full md:max-w-[550px] drop-shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
            
           </div>
         </div>
 
-        {/* Text content — shows second on mobile (order-2), first on desktop (md:order-1) */}
-        <div className="w-full md:w-1/2 flex flex-col gap-4 md:gap-6 md:pr-10 z-20 order-2 md:order-1 text-center md:text-right">
+        {/* Text content */}
+        <div className="w-full md:w-1/2 shrink-0 flex flex-col gap-4 md:gap-6 md:pl-10 z-20 order-2 text-center md:text-left">
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter drop-shadow-lg">
             About Us
           </h2>
-          <div className="w-20 h-2 bg-white rounded-full mx-auto md:mx-0 md:ml-auto"></div>
+          <div className="w-20 h-2 bg-white rounded-full mx-auto md:mx-0"></div>
           <p className="about-text-1 text-sm sm:text-base md:text-xl text-white/90 leading-relaxed font-medium mt-2 md:mt-4">
             {"Welcome to our culinary universe. We believe that food isn't just about sustenance; it's an experience, an art form, and a way to bring people together Our passionate chefs craft each dish with the freshest ingredients, pushing the boundaries of flavor to create unforgettable moments with every bite.".split("").map((char, idx) => (
               <span key={`about1-${idx}`} className="about-char" style={{ opacity: 0 }}>
@@ -503,7 +504,7 @@ export default function Home() {
               </span>
             ))}
           </p>
-          <button className="about-btn mx-auto md:mx-0 md:mr-auto mt-4 md:mt-6 border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-lg uppercase tracking-widest text-sm md:text-base">
+          <button className="about-btn mx-auto md:mx-0 mt-4 md:mt-6 border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-lg uppercase tracking-widest text-sm md:text-base w-fit">
             Our Story
           </button>
         </div>
