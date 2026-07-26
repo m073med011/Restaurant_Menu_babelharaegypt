@@ -485,14 +485,14 @@ export default function Home() {
         className="relative z-10 w-full min-h-dvh flex flex-col md:flex-row items-center px-6 sm:px-12 md:px-24 py-16 md:py-0 mx-auto max-w-[1900px] overflow-hidden"
       >
         {/* Image Placeholder */}
-        <div className="hidden md:flex w-full md:w-1/2 shrink-0 items-center justify-center order-1 mb-10 md:mb-0">
+        <div className="hidden md:flex w-full md:w-1/2 shrink-0 items-center justify-center order-2 mb-10 md:mb-0">
           <div className="about-image-wrapper w-[70vw] max-w-[400px] md:w-full md:max-w-[550px] drop-shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
            
           </div>
         </div>
 
         {/* Text content */}
-        <div className="w-full md:w-1/2 shrink-0 flex flex-col gap-4 md:gap-6 md:pl-10 z-20 order-2 text-center md:text-left">
+        <div className="w-full md:w-1/2 shrink-0 flex flex-col gap-4 md:gap-6 md:pr-10 z-20 order-1 text-center md:text-left">
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter drop-shadow-lg">
             About Us
           </h2>
