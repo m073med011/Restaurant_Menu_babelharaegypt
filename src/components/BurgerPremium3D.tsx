@@ -18,18 +18,19 @@ function BurgerModel() {
 
   useEffect(() => {
     if (!groupRef.current) return;
+    const group = groupRef.current;
     
     // We animate this 3D group based on ScrollTriggers linked to the main DOM.
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 320px)", () => {
       // Initial state
-      gsap.set(groupRef.current.rotation, { y: 0, x: 0.1, z: 0 });
-      gsap.set(groupRef.current.position, { x: 0, y: -1.5, z: 0 });
-      gsap.set(groupRef.current.scale, { x: 2.5, y: 2.5, z: 2.5 });
+      gsap.set(group.rotation, { y: 0, x: 0.1, z: 0 });
+      gsap.set(group.position, { x: 0, y: -1.5, z: 0 });
+      gsap.set(group.scale, { x: 2.5, y: 2.5, z: 2.5 });
 
       // Transition to Section 2 (Ingredients)
-      gsap.fromTo(groupRef.current.rotation, 
+      gsap.fromTo(group.rotation, 
         { y: 0, x: 0.1, z: 0 },
         {
           y: Math.PI * 1.5, // Rotate to show the side
@@ -45,7 +46,7 @@ function BurgerModel() {
         }
       );
 
-      gsap.fromTo(groupRef.current.position, 
+      gsap.fromTo(group.position, 
         { x: 0, y: -1.5, z: 0 },
         {
           x: 1.5, // Move right
@@ -62,7 +63,7 @@ function BurgerModel() {
       );
 
       // Transition to Section 3 (Quality)
-      gsap.fromTo(groupRef.current.rotation, 
+      gsap.fromTo(group.rotation, 
         { y: Math.PI * 1.5, x: 0.3, z: 0 },
         {
           y: Math.PI * 2.8, // Rotate to show the other side
@@ -78,7 +79,7 @@ function BurgerModel() {
         }
       );
 
-      gsap.fromTo(groupRef.current.position, 
+      gsap.fromTo(group.position, 
         { x: 1.5, y: -1.0, z: 2 },
         {
           x: -1.5, // Move left
@@ -95,7 +96,7 @@ function BurgerModel() {
       );
 
       // Transition to Section 4 (CTA)
-      gsap.fromTo(groupRef.current.rotation, 
+      gsap.fromTo(group.rotation, 
         { y: Math.PI * 2.8, x: 0, z: 0 },
         {
           y: Math.PI * 4, // Full rotations
@@ -111,7 +112,7 @@ function BurgerModel() {
         }
       );
 
-      gsap.fromTo(groupRef.current.position, 
+      gsap.fromTo(group.position, 
         { x: -1.5, y: -1.5, z: 1 },
         {
           x: 0, // Back to center
